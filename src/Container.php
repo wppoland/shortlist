@@ -34,4 +34,9 @@ final class Container
 
         return $this->instances[$id] = ($this->factories[$id])($this);
     }
+
+    public function has(string $id): bool
+    {
+        return isset($this->factories[$id]) || array_key_exists($id, $this->instances);
+    }
 }
