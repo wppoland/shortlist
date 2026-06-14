@@ -78,6 +78,11 @@ final class ShortlistService implements HasHooks
         $this->engine->registerHooks();
         add_shortcode('shortlist', [$this, 'renderShortcode']);
 
+        // Extend the kit's localized config object with translatable status
+        // strings used by our script's aria-live announcements. Runs after the
+        // engine's own enqueue (priority 10) so the handle exists.
+        add_action('wp_enqueue_scripts', [$this, 'localizeStrings'], 20);
+
         // Append the saved-item count to the My Account "Wishlist" menu label.
         // The kit engine adds the menu item on the same filter at the default
         // priority (10); run later (20) so the count reflects the final label.
@@ -121,6 +126,32 @@ final class ShortlistService implements HasHooks
         );
 
         return $items;
+    }
+
+    /**
+     * Merge translatable status strings into the kit's localized config object
+     * (`shortlistWishlist`) so our front-end script can announce add/remove and
+     * failure outcomes to assistive tech. Uses wp_add_inline_script so it merges
+     * onto the existing object rather than replacing the kit's payload.
+     */
+    public function localizeStrings(): void
+    {
+        if (! wp_script_is('shortlist', 'enqueued')) {
+            return;
+        }
+
+        $strings = [
+            'addedText'   => __('Added to your wishlist.', 'shortlist'),
+            'removedText' => __('Removed from your wishlist.', 'shortlist'),
+            'errorText'   => __('Sorry, something went wrong. Please try again.', 'shortlist'),
+        ];
+
+        $inline = sprintf(
+            'window.shortlistWishlist=Object.assign(window.shortlistWishlist||{},%s);',
+            wp_json_encode($strings),
+        );
+
+        wp_add_inline_script('shortlist', $inline, 'before');
     }
 
     /**

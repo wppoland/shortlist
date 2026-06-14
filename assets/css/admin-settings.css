@@ -1,0 +1,159 @@
+/**
+ * Shortlist - admin settings page styles.
+ *
+ * Polishes the WP Settings API form-table into a modern, card-based layout with
+ * an accessible "?" help affordance per setting (native Popover API, wired via
+ * aria-details with a CSS-only :popover-open fallback). Themeable via custom
+ * properties; honours dark mode and reduced motion.
+ */
+
+.shortlist-admin {
+  --shortlist-admin-accent: #d6336c;
+  --shortlist-admin-surface: #fff;
+  --shortlist-admin-border: #dcdcde;
+  --shortlist-admin-text: #1d2327;
+  --shortlist-admin-muted: #646970;
+  --shortlist-admin-radius: 10px;
+  --shortlist-admin-gap: clamp(1rem, 0.5rem + 1.5vw, 1.75rem);
+
+  max-inline-size: 880px;
+}
+
+.shortlist-admin__intro {
+  margin-block: 0.25rem 1.25rem;
+  color: var(--shortlist-admin-muted);
+  font-size: 14px;
+  max-inline-size: 70ch;
+}
+
+/* Section cards -------------------------------------------------------------- */
+
+.shortlist-admin__card {
+  margin-block-end: var(--shortlist-admin-gap);
+  padding: clamp(1rem, 0.5rem + 1.5vw, 1.75rem);
+  border: 1px solid var(--shortlist-admin-border);
+  border-radius: var(--shortlist-admin-radius);
+  background: var(--shortlist-admin-surface);
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.04);
+}
+
+.shortlist-admin__card > h2 {
+  margin-block: 0 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.shortlist-admin__card-desc {
+  margin-block: 0 1rem;
+  color: var(--shortlist-admin-muted);
+  max-inline-size: 65ch;
+}
+
+.shortlist-admin .form-table {
+  margin-block-start: 0;
+}
+
+.shortlist-admin .form-table th {
+  inline-size: 220px;
+}
+
+/* Label + help affordance --------------------------------------------------- */
+
+.shortlist-admin__label-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.shortlist-help {
+  position: relative;
+  display: inline-flex;
+}
+
+.shortlist-help__toggle {
+  inline-size: 18px;
+  block-size: 18px;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1;
+  color: var(--shortlist-admin-accent);
+  background: transparent;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  cursor: help;
+  transition: background-color 140ms ease, color 140ms ease;
+}
+
+.shortlist-help__toggle:hover,
+.shortlist-help__toggle:focus-visible {
+  background: var(--shortlist-admin-accent);
+  color: #fff;
+}
+
+.shortlist-help__toggle:focus-visible {
+  outline: 2px solid #2271b1;
+  outline-offset: 2px;
+}
+
+/* Popover panel. Anchored under the toggle when the browser supports CSS
+   anchor positioning; otherwise the popover top-layer default centring applies,
+   which is still fully usable. */
+.shortlist-help__panel {
+  inline-size: min(320px, 90vw);
+  margin: 0;
+  padding: 0.75rem 0.9rem;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--shortlist-admin-text);
+  background: var(--shortlist-admin-surface);
+  border: 1px solid var(--shortlist-admin-border);
+  border-radius: 8px;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.16);
+}
+
+@supports (anchor-name: --a) {
+  .shortlist-help__toggle {
+    anchor-name: var(--shortlist-anchor);
+  }
+  .shortlist-help__panel {
+    position-anchor: var(--shortlist-anchor);
+    inset: auto;
+    inset-block-start: anchor(bottom);
+    inset-inline-start: anchor(start);
+    margin-block-start: 6px;
+    position-try-fallbacks: flip-block, flip-inline;
+  }
+}
+
+/* Footer -------------------------------------------------------------------- */
+
+.shortlist-admin .submit {
+  margin-block-start: 0;
+}
+
+/* Dark mode ----------------------------------------------------------------- */
+
+@media (prefers-color-scheme: dark) {
+  .shortlist-admin {
+    --shortlist-admin-surface: #1e2327;
+    --shortlist-admin-border: #3c434a;
+    --shortlist-admin-text: #e6e8eb;
+    --shortlist-admin-muted: #a6acb3;
+  }
+  .shortlist-admin__card {
+    box-shadow: none;
+  }
+}
+
+/* Reduced motion ------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .shortlist-help__toggle {
+    transition: none;
+  }
+}

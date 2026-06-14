@@ -81,6 +81,9 @@ Use the `[shortlist]` shortcode, or rely on the "Wishlist" tab added to the WooC
 == Changelog ==
 
 = 0.2.0 =
+* Polish: refreshed, themeable storefront styles (heart icon, dark-mode, CLS-safe grid) and a modern, card-based settings screen with an accessible "?" help popover on every option.
+* Accessibility: wishlist changes are now announced to screen readers, and the My Account count updates live without a page reload.
+* Robustness: friendly empty-state with a "Browse products" link, clear failure messaging, and defensive guards against missing product data.
 * New: **Shortlist Wishlist** block for the block editor (server-rendered, matches the `[shortlist]` shortcode).
 * New: optional saved-item count next to the My Account "Wishlist" menu label.
 * New: full control over the wishlist list — heading, intro and empty-list text, column count, and which product details (image, name, price, add-to-cart, remove button) appear.
