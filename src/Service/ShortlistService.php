@@ -56,8 +56,9 @@ final class ShortlistService implements HasHooks
                 'account'        => __('Wishlist', 'shortlist'),
                 'login_required' => __('Please log in to use your wishlist.', 'shortlist'),
                 'not_found'      => __('Product not found.', 'shortlist'),
+                'variation_required' => __('Choose product options before adding to your wishlist.', 'shortlist'),
             ],
-            isEnabled: fn (): bool => $this->isEnabled(),
+            isEnabled: fn (): bool => $this->isFeatureEnabled(),
             settings: fn (): array => $this->settings(),
             renderTemplate: function (string $template, array $context): void {
                 $this->renderTemplate($template, $context);
@@ -77,6 +78,102 @@ final class ShortlistService implements HasHooks
 
         $this->engine->registerHooks();
         add_shortcode('shortlist', [$this, 'renderShortcode']);
+
+        // Extend the kit's localized config object with translatable status
+        // strings used by our script's aria-live announcements. Runs after the
+        // engine's own enqueue (priority 10) so the handle exists.
+        add_action('wp_enqueue_scripts', [$this, 'localizeStrings'], 20);
+        add_action('wp_enqueue_scripts', [$this, 'enqueueVariationDependency'], 20);
+
+        // Append the saved-item count to the My Account "Wishlist" menu label.
+        // The kit engine adds the menu item on the same filter at the default
+        // priority (10); run later (20) so the count reflects the final label.
+        add_filter('woocommerce_account_menu_items', [$this, 'appendAccountCount'], 20);
+    }
+
+    /**
+     * Append the saved-item count to the My Account wishlist menu label, e.g.
+     * "Wishlist (3)". No-op when the count toggle is off or the item is absent.
+     *
+     * @param array<string, string> $items
+     * @return array<string, string>
+     */
+    public function appendAccountCount(array $items): array
+    {
+        if (! $this->engine instanceof WishlistEngine) {
+            return $items;
+        }
+
+        $settings = $this->settings();
+
+        if (empty($settings['show_account_count']) || empty($settings['show_in_account'])) {
+            return $items;
+        }
+
+        if (! isset($items['shortlist'])) {
+            return $items;
+        }
+
+        $count = $this->engine->getCount();
+
+        if ($count < 1) {
+            return $items;
+        }
+
+        $items['shortlist'] = sprintf(
+            /* translators: 1: wishlist menu label, 2: saved item count */
+            _x('%1$s (%2$d)', 'My Account menu label with item count', 'shortlist'),
+            $items['shortlist'],
+            $count,
+        );
+
+        return $items;
+    }
+
+    /**
+     * Merge translatable status strings into the kit's localized config object
+     * (`shortlistWishlist`) so our front-end script can announce add/remove and
+     * failure outcomes to assistive tech. Uses wp_add_inline_script so it merges
+     * onto the existing object rather than replacing the kit's payload.
+     */
+    public function localizeStrings(): void
+    {
+        if (! wp_script_is('shortlist', 'enqueued')) {
+            return;
+        }
+
+        $strings = [
+            'addedText'   => __('Added to your wishlist.', 'shortlist'),
+            'removedText' => __('Removed from your wishlist.', 'shortlist'),
+            'errorText'          => __('Sorry, something went wrong. Please try again.', 'shortlist'),
+            'variationRequired' => $this->message('variation_required_text', 'variation_required'),
+        ];
+
+        $inline = sprintf(
+            'window.shortlistWishlist=Object.assign(window.shortlistWishlist||{},%s);',
+            wp_json_encode($strings),
+        );
+
+        wp_add_inline_script('shortlist', $inline, 'before');
+    }
+
+    /**
+     * On variable product pages, load WooCommerce's variation script so the wishlist
+     * button can track the selected variation ID.
+     */
+    public function enqueueVariationDependency(): void
+    {
+        if (! wp_script_is('shortlist', 'enqueued') || ! is_product()) {
+            return;
+        }
+
+        global $product;
+
+        if (! $product instanceof \WC_Product || ! $product->is_type('variable')) {
+            return;
+        }
+
+        wp_enqueue_script('wc-add-to-cart-variation');
     }
 
     /**
@@ -91,7 +188,39 @@ final class ShortlistService implements HasHooks
         return $this->engine->renderWishlist();
     }
 
-    private function isEnabled(): bool
+    /**
+     * Public wishlist HTML for the shortcode, dedicated page injection, and blocks.
+     */
+    public function renderWishlistHtml(): string
+    {
+        return $this->renderShortcode();
+    }
+
+    public function isEnabled(): bool
+    {
+        return $this->engine instanceof WishlistEngine && $this->isFeatureEnabled();
+    }
+
+    /**
+     * Resolve a settings-backed string with label fallback (for front-end copy).
+     */
+    public function message(string $settingsKey, string $labelKey): string
+    {
+        $settings = $this->settings();
+        $value = $settings[$settingsKey] ?? null;
+
+        if (is_string($value) && $value !== '') {
+            return $value;
+        }
+
+        $labels = [
+            'variation_required' => __('Choose product options before adding to your wishlist.', 'shortlist'),
+        ];
+
+        return $labels[$labelKey] ?? '';
+    }
+
+    private function isFeatureEnabled(): bool
     {
         return (bool) ($this->settings()['enabled'] ?? false);
     }

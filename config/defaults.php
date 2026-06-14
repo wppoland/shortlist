@@ -28,6 +28,9 @@ return [
     'show_on_loop'    => true,
     'show_in_account' => true,
 
+    // Show the saved-item count next to the My Account "Wishlist" menu label.
+    'show_account_count' => true,
+
     // Button labels (toggle state).
     'button_add_text'    => 'Add to wishlist',
     'button_remove_text' => 'Remove from wishlist',
@@ -48,4 +51,9 @@ return [
     // Runtime strings (front-end script / AJAX handler).
     'login_required_text'    => 'Please log in to use your wishlist.',
     'product_not_found_text' => 'Product not found.',
+    'variation_required_text' => 'Choose product options before adding to your wishlist.',
+
+    // Dedicated wishlist page (optional).
+    'wishlist_page_id'        => 0,
+    'inject_wishlist_on_page' => true,
 ];

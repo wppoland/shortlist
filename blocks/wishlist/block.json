@@ -1,0 +1,16 @@
+{
+    "$schema": "https://schemas.wp.org/trunk/block.json",
+    "apiVersion": 3,
+    "name": "shortlist/wishlist",
+    "title": "Shortlist Wishlist",
+    "category": "woocommerce",
+    "icon": "heart",
+    "description": "Show the current shopper's wishlist (the same list as the [shortlist] shortcode).",
+    "keywords": ["wishlist", "woocommerce", "shortlist", "save for later"],
+    "textdomain": "shortlist",
+    "supports": {
+        "html": false,
+        "align": ["wide", "full"]
+    },
+    "editorScript": "file:./editor.js"
+}

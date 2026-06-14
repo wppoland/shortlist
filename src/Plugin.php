@@ -57,5 +57,12 @@ final class Plugin
                 $service->registerHooks();
             }
         }
+
+        /**
+         * Fires after Shortlist has fully booted. PRO companions hook here.
+         *
+         * @param Plugin $plugin The booted plugin instance.
+         */
+        do_action('shortlist/booted', $this);
     }
 }

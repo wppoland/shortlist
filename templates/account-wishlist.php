@@ -41,10 +41,24 @@ $shortlist_remove_label = (string) ($shortlist_settings['button_remove_text'] ??
     <?php endif; ?>
 
     <?php if ($shortlist_products === []) : ?>
-        <p class="shortlist-wishlist-account__empty"><?php echo esc_html($shortlist_empty); ?></p>
+        <div class="shortlist-wishlist-account__empty">
+            <p><?php echo esc_html($shortlist_empty); ?></p>
+            <?php
+            $shortlist_shop_url = function_exists('wc_get_page_permalink') ? wc_get_page_permalink('shop') : '';
+            if (is_string($shortlist_shop_url) && $shortlist_shop_url !== '') :
+                ?>
+                <a class="button shortlist-wishlist-account__continue" href="<?php echo esc_url($shortlist_shop_url); ?>">
+                    <?php esc_html_e('Browse products', 'shortlist'); ?>
+                </a>
+            <?php endif; ?>
+        </div>
     <?php else : ?>
-        <ul class="products columns-<?php echo esc_attr((string) $shortlist_columns); ?>">
+        <ul
+            class="products columns-<?php echo esc_attr((string) $shortlist_columns); ?> shortlist-wishlist-grid"
+            style="--shortlist-columns:<?php echo esc_attr((string) $shortlist_columns); ?>;"
+        >
             <?php foreach ($shortlist_products as $shortlist_product) : ?>
+                <?php if (! $shortlist_product instanceof \WC_Product) { continue; } ?>
                 <li class="product shortlist-wishlist-item">
                     <a href="<?php echo esc_url(get_permalink($shortlist_product->get_id()) ?: ''); ?>">
                         <?php if ($shortlist_show_image) : ?>
