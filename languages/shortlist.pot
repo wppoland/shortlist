@@ -9,7 +9,7 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"POT-Creation-Date: 2026-06-14T10:34:11+00:00\n"
+"POT-Creation-Date: 2026-06-14T12:59:55+00:00\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "X-Generator: WP-CLI 2.12.0\n"
 "X-Domain: shortlist\n"
@@ -51,327 +51,327 @@ msgstr ""
 msgid "Shortlist"
 msgstr ""
 
-#: src/Admin/Settings.php:110
+#: src/Admin/Settings.php:112
 msgid "Your wishlist page was created and selected below. You can edit the title or slug anytime under Pages."
 msgstr ""
 
-#: src/Admin/Settings.php:117
+#: src/Admin/Settings.php:119
 msgid "Give shoppers an accessible \"save for later\" wishlist. Choose where the button appears, tune the labels, and design the list shown on the My Account tab, the [shortlist] shortcode, and the Shortlist block."
 msgstr ""
 
-#: src/Admin/Settings.php:124
+#: src/Admin/Settings.php:126
 msgid "General"
 msgstr ""
 
-#: src/Admin/Settings.php:126
+#: src/Admin/Settings.php:128
 msgid "Turn the wishlist on and decide who can use it."
 msgstr ""
 
-#: src/Admin/Settings.php:133
+#: src/Admin/Settings.php:135
 msgid "Enable wishlist"
 msgstr ""
 
-#: src/Admin/Settings.php:134
+#: src/Admin/Settings.php:136
 msgid "Let visitors add products to a wishlist."
 msgstr ""
 
-#: src/Admin/Settings.php:135
+#: src/Admin/Settings.php:137
 msgid "Master switch. When off, no buttons, menu item, shortcode or block output is rendered anywhere on your store - nothing is deleted, so you can switch it back on at any time."
 msgstr ""
 
-#: src/Admin/Settings.php:141
+#: src/Admin/Settings.php:143
 msgid "Allow guests"
 msgstr ""
 
-#: src/Admin/Settings.php:142
+#: src/Admin/Settings.php:144
 msgid "Allow logged-out visitors to build a wishlist."
 msgstr ""
 
-#: src/Admin/Settings.php:143
+#: src/Admin/Settings.php:145
 msgid "Guest lists are stored in a cookie and automatically merged into the customer account on login, so nothing is lost. Turn this off to require an account first - logged-out shoppers are then sent to the login page when they click the button."
 msgstr ""
 
-#: src/Admin/Settings.php:153
+#: src/Admin/Settings.php:155
 msgid "Button placement"
 msgstr ""
 
-#: src/Admin/Settings.php:155
+#: src/Admin/Settings.php:157
 msgid "Pick where the add-to-wishlist button and the My Account tab appear."
 msgstr ""
 
-#: src/Admin/Settings.php:162
+#: src/Admin/Settings.php:164
 msgid "Single product page"
 msgstr ""
 
-#: src/Admin/Settings.php:163
+#: src/Admin/Settings.php:165
 msgid "Show the add-to-wishlist button on the product page."
 msgstr ""
 
-#: src/Admin/Settings.php:164
+#: src/Admin/Settings.php:166
 msgid "Adds the toggle button to the product summary, just under the add-to-cart area."
 msgstr ""
 
-#: src/Admin/Settings.php:169
+#: src/Admin/Settings.php:171
 msgid "Shop and archive loops"
 msgstr ""
 
-#: src/Admin/Settings.php:170
+#: src/Admin/Settings.php:172
 msgid "Show the add-to-wishlist button on product cards in the shop loop."
 msgstr ""
 
-#: src/Admin/Settings.php:171
+#: src/Admin/Settings.php:173
 msgid "Adds a full-width toggle to each product card on the shop, category and tag pages so shoppers can save without opening the product."
 msgstr ""
 
-#: src/Admin/Settings.php:176
+#: src/Admin/Settings.php:178
 msgid "My Account menu"
 msgstr ""
 
-#: src/Admin/Settings.php:177
+#: src/Admin/Settings.php:179
 msgid "Add a \"Wishlist\" tab to the WooCommerce My Account area."
 msgstr ""
 
-#: src/Admin/Settings.php:178
+#: src/Admin/Settings.php:180
 msgid "Gives logged-in customers a dedicated Wishlist tab in My Account that lists everything they have saved."
 msgstr ""
 
-#: src/Admin/Settings.php:183
+#: src/Admin/Settings.php:185
 msgid "Show item count"
 msgstr ""
 
-#: src/Admin/Settings.php:184
+#: src/Admin/Settings.php:186
 msgid "Show the number of saved items next to the My Account \"Wishlist\" menu label."
 msgstr ""
 
-#: src/Admin/Settings.php:185
+#: src/Admin/Settings.php:187
 msgid "Appends a live count, e.g. \"Wishlist (3)\", to the menu label so customers see at a glance how many items they have saved. Requires the My Account menu option above."
 msgstr ""
 
-#: src/Admin/Settings.php:194
+#: src/Admin/Settings.php:196
 msgid "Button labels"
 msgstr ""
 
-#: src/Admin/Settings.php:196
+#: src/Admin/Settings.php:198
 msgid "The text shown on the toggle button. It switches between the two as items are saved and removed."
 msgstr ""
 
-#: src/Admin/Settings.php:203
+#: src/Admin/Settings.php:205
 msgid "Add label"
 msgstr ""
 
-#: src/Admin/Settings.php:204
-#: src/Admin/Settings.php:546
+#: src/Admin/Settings.php:206
+#: src/Admin/Settings.php:548
 #: src/Service/ShortlistService.php:54
 msgid "Add to wishlist"
 msgstr ""
 
-#: src/Admin/Settings.php:205
+#: src/Admin/Settings.php:207
 msgid "Shown when the product is not yet saved. Leave blank to use the default \"Add to wishlist\"."
 msgstr ""
 
-#: src/Admin/Settings.php:210
+#: src/Admin/Settings.php:212
 msgid "Remove label"
 msgstr ""
 
-#: src/Admin/Settings.php:211
-#: src/Admin/Settings.php:547
+#: src/Admin/Settings.php:213
+#: src/Admin/Settings.php:549
 #: src/Service/ShortlistService.php:55
 #: templates/account-wishlist.php:30
 msgid "Remove from wishlist"
 msgstr ""
 
-#: src/Admin/Settings.php:212
+#: src/Admin/Settings.php:214
 msgid "Shown once the product is saved, so clicking again removes it. Leave blank to use the default \"Remove from wishlist\"."
 msgstr ""
 
-#: src/Admin/Settings.php:217
+#: src/Admin/Settings.php:219
 msgid "Variation hint"
 msgstr ""
 
-#: src/Admin/Settings.php:218
+#: src/Admin/Settings.php:220
 #: src/Service/ShortlistService.php:59
 #: src/Service/ShortlistService.php:217
 #: templates/single-wishlist-button.php:21
 msgid "Choose product options before adding to your wishlist."
 msgstr ""
 
-#: src/Admin/Settings.php:219
+#: src/Admin/Settings.php:221
 msgid "Shown under the button on variable products until the shopper picks size, colour, or other options."
 msgstr ""
 
-#: src/Admin/Settings.php:228
+#: src/Admin/Settings.php:230
 msgid "Dedicated wishlist page"
 msgstr ""
 
-#: src/Admin/Settings.php:230
+#: src/Admin/Settings.php:232
 msgid "Give shoppers a bookmarkable page with their saved products — great for navigation menus and email campaigns."
 msgstr ""
 
-#: src/Admin/Settings.php:236
+#: src/Admin/Settings.php:238
 msgid "Wishlist page"
 msgstr ""
 
-#: src/Admin/Settings.php:237
+#: src/Admin/Settings.php:239
 msgid "Pick an existing page or create one with the button below. Shortlist loads its assets on that page automatically."
 msgstr ""
 
-#: src/Admin/Settings.php:247
+#: src/Admin/Settings.php:249
 msgid "— None — use My Account or shortcode only —"
 msgstr ""
 
-#: src/Admin/Settings.php:254
+#: src/Admin/Settings.php:256
 msgid "Optional. When set, the wishlist stylesheet and script load on that page so buttons and remove actions work there too."
 msgstr ""
 
-#: src/Admin/Settings.php:261
+#: src/Admin/Settings.php:263
 msgid "Show list on page"
 msgstr ""
 
-#: src/Admin/Settings.php:262
+#: src/Admin/Settings.php:264
 msgid "Automatically output the wishlist at the top of the chosen page."
 msgstr ""
 
-#: src/Admin/Settings.php:263
+#: src/Admin/Settings.php:265
 msgid "Helpful when the page is still empty: shoppers see their saved products immediately. If the page already contains [shortlist], this stays off to avoid duplicates."
 msgstr ""
 
-#: src/Admin/Settings.php:275
+#: src/Admin/Settings.php:277
 msgid "Create wishlist page"
 msgstr ""
 
-#: src/Admin/Settings.php:279
+#: src/Admin/Settings.php:281
 msgid "Creates a published page titled “My wishlist” with the [shortlist] shortcode and selects it above."
 msgstr ""
 
-#: src/Admin/Settings.php:285
+#: src/Admin/Settings.php:287
 msgid "Wishlist list"
 msgstr ""
 
-#: src/Admin/Settings.php:287
+#: src/Admin/Settings.php:289
 msgid "Design the list shown on the My Account tab and via the [shortlist] shortcode and the Shortlist block."
 msgstr ""
 
-#: src/Admin/Settings.php:294
+#: src/Admin/Settings.php:296
 msgid "List heading"
 msgstr ""
 
-#: src/Admin/Settings.php:295
+#: src/Admin/Settings.php:297
 #: src/Service/WishlistPageService.php:41
 #: templates/account-wishlist.php:20
 msgid "My wishlist"
 msgstr ""
 
-#: src/Admin/Settings.php:296
+#: src/Admin/Settings.php:298
 msgid "The heading shown above the saved products. Only displayed when \"Show heading\" below is enabled."
 msgstr ""
 
-#: src/Admin/Settings.php:301
+#: src/Admin/Settings.php:303
 msgid "Intro text"
 msgstr ""
 
-#: src/Admin/Settings.php:302
+#: src/Admin/Settings.php:304
 msgid "e.g. Items you saved for later"
 msgstr ""
 
-#: src/Admin/Settings.php:303
+#: src/Admin/Settings.php:305
 msgid "Optional short paragraph shown under the heading - a good place to reassure shoppers their list is private to them. Leave blank to hide it."
 msgstr ""
 
-#: src/Admin/Settings.php:308
+#: src/Admin/Settings.php:310
 msgid "Empty-list message"
 msgstr ""
 
-#: src/Admin/Settings.php:309
+#: src/Admin/Settings.php:311
 #: templates/account-wishlist.php:22
 msgid "Your wishlist is empty."
 msgstr ""
 
-#: src/Admin/Settings.php:310
+#: src/Admin/Settings.php:312
 msgid "Friendly message shown when the shopper has not saved anything yet. A \"Browse products\" link is added automatically below it."
 msgstr ""
 
-#: src/Admin/Settings.php:315
+#: src/Admin/Settings.php:317
 msgid "Columns"
 msgstr ""
 
-#: src/Admin/Settings.php:316
+#: src/Admin/Settings.php:318
 msgid "How many products sit side by side in the grid (1-6). The layout automatically drops to a comfortable number of columns on small screens."
 msgstr ""
 
-#: src/Admin/Settings.php:321
+#: src/Admin/Settings.php:323
 msgid "Show heading"
 msgstr ""
 
-#: src/Admin/Settings.php:322
+#: src/Admin/Settings.php:324
 msgid "Show the list heading above the products."
 msgstr ""
 
-#: src/Admin/Settings.php:323
+#: src/Admin/Settings.php:325
 msgid "Toggles the \"List heading\" above. Turn off if your page already has its own title."
 msgstr ""
 
-#: src/Admin/Settings.php:328
+#: src/Admin/Settings.php:330
 msgid "Show image"
 msgstr ""
 
-#: src/Admin/Settings.php:329
+#: src/Admin/Settings.php:331
 msgid "Show the product thumbnail."
 msgstr ""
 
-#: src/Admin/Settings.php:330
+#: src/Admin/Settings.php:332
 msgid "Displays each saved product's featured image. Space is reserved for it so the page never jumps as images load."
 msgstr ""
 
-#: src/Admin/Settings.php:335
+#: src/Admin/Settings.php:337
 msgid "Show name"
 msgstr ""
 
-#: src/Admin/Settings.php:336
+#: src/Admin/Settings.php:338
 msgid "Show the product name."
 msgstr ""
 
-#: src/Admin/Settings.php:337
+#: src/Admin/Settings.php:339
 msgid "Displays the product title as a link to the product page."
 msgstr ""
 
-#: src/Admin/Settings.php:342
+#: src/Admin/Settings.php:344
 msgid "Show price"
 msgstr ""
 
-#: src/Admin/Settings.php:343
+#: src/Admin/Settings.php:345
 msgid "Show the product price."
 msgstr ""
 
-#: src/Admin/Settings.php:344
+#: src/Admin/Settings.php:346
 msgid "Displays the current price, including any sale price, exactly as WooCommerce formats it."
 msgstr ""
 
-#: src/Admin/Settings.php:349
+#: src/Admin/Settings.php:351
 msgid "Show add-to-cart"
 msgstr ""
 
-#: src/Admin/Settings.php:350
+#: src/Admin/Settings.php:352
 msgid "Show an add-to-cart button for in-stock products."
 msgstr ""
 
-#: src/Admin/Settings.php:351
+#: src/Admin/Settings.php:353
 msgid "Lets shoppers move an item straight from their wishlist to the cart. The button is only shown for purchasable, in-stock products."
 msgstr ""
 
-#: src/Admin/Settings.php:356
+#: src/Admin/Settings.php:358
 msgid "Show remove button"
 msgstr ""
 
-#: src/Admin/Settings.php:357
+#: src/Admin/Settings.php:359
 msgid "Show a remove-from-wishlist button on each item."
 msgstr ""
 
-#: src/Admin/Settings.php:358
+#: src/Admin/Settings.php:360
 msgid "Adds a one-click remove button to each saved product so shoppers can tidy their list."
 msgstr ""
 
 #. translators: accessible name for the help button.
-#: src/Admin/Settings.php:396
+#: src/Admin/Settings.php:398
 msgid "More information"
 msgstr ""
 
