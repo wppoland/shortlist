@@ -104,6 +104,12 @@ final class Settings implements HasHooks
         }
 
         $settings = $this->settings();
+
+        if (isset($_GET['shortlist-page-created']) && sanitize_key((string) wp_unslash($_GET['shortlist-page-created'])) === '1') {
+            echo '<div class="notice notice-success is-dismissible"><p>';
+            esc_html_e('Your wishlist page was created and selected below. You can edit the title or slug anytime under Pages.', 'shortlist');
+            echo '</p></div>';
+        }
         ?>
         <div class="wrap shortlist-admin">
             <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
@@ -206,9 +212,73 @@ final class Settings implements HasHooks
                                 __('Shown once the product is saved, so clicking again removes it. Leave blank to use the default "Remove from wishlist".', 'shortlist'),
                                 $settings,
                             );
+                            $this->textRow(
+                                'variation_required_text',
+                                __('Variation hint', 'shortlist'),
+                                __('Choose product options before adding to your wishlist.', 'shortlist'),
+                                __('Shown under the button on variable products until the shopper picks size, colour, or other options.', 'shortlist'),
+                                $settings,
+                            );
                             ?>
                         </tbody>
                     </table>
+                </div>
+
+                <div class="shortlist-admin__card">
+                    <h2><?php esc_html_e('Dedicated wishlist page', 'shortlist'); ?></h2>
+                    <p class="shortlist-admin__card-desc">
+                        <?php esc_html_e('Give shoppers a bookmarkable page with their saved products — great for navigation menus and email campaigns.', 'shortlist'); ?>
+                    </p>
+                    <table class="form-table" role="presentation">
+                        <tbody>
+                            <tr>
+                                <th scope="row">
+                                    <label for="shortlist_wishlist_page_id"><?php esc_html_e('Wishlist page', 'shortlist'); ?></label>
+                                    <?php echo $this->helpAffordance(__('Pick an existing page or create one with the button below. Shortlist loads its assets on that page automatically.', 'shortlist')); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Built from escaped parts in helpAffordance(). ?>
+                                </th>
+                                <td>
+                                    <?php
+                                    // phpcs:disable WordPress.Security.EscapeOutput.OutputNotEscaped -- wp_dropdown_pages() escapes its own markup.
+                                    wp_dropdown_pages(
+                                        [
+                                            'name'              => self::OPTION . '[wishlist_page_id]',
+                                            'id'                => 'shortlist_wishlist_page_id',
+                                            'selected'          => (int) ($settings['wishlist_page_id'] ?? 0),
+                                            'show_option_none'  => __('— None — use My Account or shortcode only —', 'shortlist'),
+                                            'option_none_value' => '0',
+                                        ],
+                                    );
+                                    // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
+                                    ?>
+                                    <p class="description">
+                                        <?php esc_html_e('Optional. When set, the wishlist stylesheet and script load on that page so buttons and remove actions work there too.', 'shortlist'); ?>
+                                    </p>
+                                </td>
+                            </tr>
+                            <?php
+                            $this->checkboxRow(
+                                'inject_wishlist_on_page',
+                                __('Show list on page', 'shortlist'),
+                                __('Automatically output the wishlist at the top of the chosen page.', 'shortlist'),
+                                __('Helpful when the page is still empty: shoppers see their saved products immediately. If the page already contains [shortlist], this stays off to avoid duplicates.', 'shortlist'),
+                                $settings,
+                                true,
+                            );
+                            ?>
+                        </tbody>
+                    </table>
+                    <form method="post" action="<?php echo esc_url(admin_url('admin-post.php')); ?>" class="shortlist-admin__inline-form">
+                        <?php wp_nonce_field('shortlist_create_wishlist_page'); ?>
+                        <input type="hidden" name="action" value="shortlist_create_wishlist_page" />
+                        <?php
+                        // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- submit_button() escapes its own markup.
+                        submit_button(__('Create wishlist page', 'shortlist'), 'secondary', 'submit', false);
+                        // phpcs:enable
+                        ?>
+                        <p class="description">
+                            <?php esc_html_e('Creates a published page titled “My wishlist” with the [shortlist] shortcode and selects it above.', 'shortlist'); ?>
+                        </p>
+                    </form>
                 </div>
 
                 <div class="shortlist-admin__card">
@@ -459,6 +529,13 @@ final class Settings implements HasHooks
         $columns = isset($raw['grid_columns']) ? (int) $raw['grid_columns'] : (int) ($defaults['grid_columns'] ?? 3);
         $columns = max(1, min(6, $columns));
 
+        $pageId = isset($raw['wishlist_page_id']) ? (int) $raw['wishlist_page_id'] : (int) ($defaults['wishlist_page_id'] ?? 0);
+        if ($pageId > 0 && get_post_status($pageId) === false) {
+            $pageId = 0;
+        }
+
+        $variationText = isset($raw['variation_required_text']) ? sanitize_text_field((string) $raw['variation_required_text']) : '';
+
         return array_merge($defaults, [
             'enabled'            => ! empty($raw['enabled']),
             'allow_guests'       => ! empty($raw['allow_guests']),
@@ -478,6 +555,9 @@ final class Settings implements HasHooks
             'show_price'         => ! empty($raw['show_price']),
             'show_add_to_cart'   => ! empty($raw['show_add_to_cart']),
             'show_remove_button' => ! empty($raw['show_remove_button']),
+            'wishlist_page_id'        => $pageId,
+            'inject_wishlist_on_page' => ! empty($raw['inject_wishlist_on_page']),
+            'variation_required_text' => $variationText !== '' ? $variationText : (string) ($defaults['variation_required_text'] ?? ''),
         ]);
     }
 

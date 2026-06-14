@@ -4,7 +4,7 @@ Tags: woocommerce, wishlist, save for later, accessibility, ajax
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 8.1
-Stable tag: 0.2.0
+Stable tag: 0.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -79,6 +79,11 @@ Use the `[shortlist]` shortcode, or rely on the "Wishlist" tab added to the WooC
 3. The Shortlist settings screen.
 
 == Changelog ==
+
+= 0.3.0 =
+* New: **Wishlist page** — pick an existing page or create one from settings; auto-inject the `[shortlist]` list when the page has no shortcode yet.
+* New: **Variation-aware saves** — on variable products the button tracks the selected variation; configurable hint when no variation is chosen.
+* Improved: settings screen groups wishlist page, variation hint and existing placement controls.
 
 = 0.2.0 =
 * Polish: refreshed, themeable storefront styles (heart icon, dark-mode, CLS-safe grid) and a modern, card-based settings screen with an accessible "?" help popover on every option.

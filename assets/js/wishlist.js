@@ -102,7 +102,14 @@
 			return;
 		}
 
-		// Guard against double submissions while a request is in flight.
+        if ( button.getAttribute( 'aria-disabled' ) === 'true' ) {
+            if ( config.variationRequired ) {
+                announce( config.variationRequired );
+            }
+            return;
+        }
+
+        // Guard against double submissions while a request is in flight.
 		if ( button.getAttribute( 'aria-busy' ) === 'true' ) {
 			return;
 		}
@@ -159,9 +166,71 @@
 				// Network/parse failure: leave button state intact, tell the user.
 				announce( config.errorText );
 			} )
-			.finally( function () {
-				button.disabled = false;
+           	.finally( function () {
+				if ( button.dataset.requiresVariation === '1' && ! button.classList.contains( 'is-active' ) ) {
+					button.disabled = true;
+					button.setAttribute( 'aria-disabled', 'true' );
+				} else {
+					button.disabled = false;
+					button.removeAttribute( 'aria-disabled' );
+				}
 				button.removeAttribute( 'aria-busy' );
+			} );
+	} );
+
+	if ( typeof jQuery === 'undefined' ) {
+		return;
+	}
+
+	var variationsForm = document.querySelector( 'form.variations_form' );
+
+	if ( ! variationsForm ) {
+		return;
+	}
+
+	jQuery( variationsForm ).on( 'found_variation', function ( _event, variation ) {
+		if ( ! variation || ! variation.variation_id ) {
+			return;
+		}
+
+		document
+			.querySelectorAll(
+				BUTTON_SELECTOR + '[data-requires-variation="1"]'
+			)
+			.forEach( function ( el ) {
+				var variationId = String( variation.variation_id );
+				el.dataset.productId = variationId;
+				el.disabled = false;
+				el.setAttribute( 'aria-disabled', 'false' );
+
+				var hint = el
+					.closest( '.shortlist-wishlist-single' )
+					?.querySelector( '[data-shortlist-variation-hint]' );
+
+				if ( hint ) {
+					hint.hidden = true;
+				}
+			} );
+	} );
+
+	jQuery( variationsForm ).on( 'reset_data', function () {
+		document
+			.querySelectorAll(
+				BUTTON_SELECTOR + '[data-requires-variation="1"]'
+			)
+			.forEach( function ( el ) {
+				el.disabled = true;
+				el.setAttribute( 'aria-disabled', 'true' );
+				el.classList.remove( 'is-active' );
+				el.setAttribute( 'aria-pressed', 'false' );
+
+				var hint = el
+					.closest( '.shortlist-wishlist-single' )
+					?.querySelector( '[data-shortlist-variation-hint]' );
+
+				if ( hint ) {
+					hint.hidden = false;
+				}
 			} );
 	} );
 } )();
