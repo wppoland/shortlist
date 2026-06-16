@@ -1,6 +1,6 @@
 === Shortlist - Wishlist for WooCommerce ===
 Contributors: wppoland
-Tags: woocommerce, wishlist, save for later, accessibility, ajax
+Tags: woocommerce, wishlist, product wishlist, save for later, favourites
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 8.1
@@ -8,11 +8,11 @@ Stable tag: 0.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Accessible WooCommerce wishlist for guests and customers: AJAX toggle, My Account tab, shortcode and block. Vanilla JS, no jQuery, no layout shift.
+WooCommerce wishlist and save-for-later list for guests and customers: AJAX toggle, My Account tab, shortcode and block.
 
 == Description ==
 
-Shortlist adds an "Add to wishlist" button to your WooCommerce shop loop and product pages. Shoppers save products and come back to them later from a "Wishlist" tab in My Account, a page of their own, or anywhere you drop the `[shortlist]` shortcode.
+Shortlist adds an "Add to wishlist" button to your WooCommerce shop loop and product pages. Shoppers save products, favourites and save-for-later items, then come back from a "Wishlist" tab in My Account, a page of their own, or anywhere you drop the `[shortlist]` shortcode.
 
 Guests can save products before they log in. A guest list lives in a cookie; the next time that visitor signs in, their saved items move onto their account, so nothing is lost at the login step. Logged-in customers' lists are stored in a custom database table keyed to their user id.
 
@@ -75,6 +75,18 @@ No. The plugin's own front-end script is vanilla JavaScript with no jQuery depen
 = How do I show the wishlist on a page? =
 
 Use the `[shortlist]` shortcode, or rely on the "Wishlist" tab added to the WooCommerce My Account area.
+
+= Does it work with variable products? =
+
+Yes. On variable products the wishlist button follows the selected variation, so the saved item can include the chosen size or colour.
+
+= Can I create a dedicated wishlist page? =
+
+Yes. Choose an existing page or create one from the Shortlist settings screen. The plugin can inject the `[shortlist]` list automatically.
+
+= Is the wishlist accessible? =
+
+Yes. The wishlist button is a real button with `aria-pressed`, screen-reader announcements and no layout shift when the saved state changes.
 
 == Screenshots ==
 
