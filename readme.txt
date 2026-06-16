@@ -8,45 +8,49 @@ Stable tag: 0.3.0
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
-Lightweight, accessible WooCommerce wishlist. Guests and customers, AJAX toggle, My Account tab and shortcode. No jQuery, no layout shift.
+Accessible WooCommerce wishlist for guests and customers: AJAX toggle, My Account tab, shortcode and block. Vanilla JS, no jQuery, no layout shift.
 
 == Description ==
 
-Shortlist adds an accessible "Add to wishlist" button to your WooCommerce shop loop and product pages. Visitors save products to a list and revisit them later from a My Account tab or anywhere via the `[shortlist]` shortcode.
+Shortlist adds an "Add to wishlist" button to your WooCommerce shop loop and product pages. Shoppers save products and come back to them later from a "Wishlist" tab in My Account, a page of their own, or anywhere you drop the `[shortlist]` shortcode.
 
-Guests get a wishlist too — it is kept in a cookie and merged into their account automatically when they log in. Logged-in customers' lists are stored in a custom table keyed to their user id.
+Guests can save products before they log in. A guest list lives in a cookie; the next time that visitor signs in, their saved items move onto their account, so nothing is lost at the login step. Logged-in customers' lists are stored in a custom database table keyed to their user id.
 
-= Built for speed and accessibility =
+The plugin is written for stores that care about front-end weight and accessibility:
 
-* **No jQuery** in the plugin's own front-end code — the script is vanilla JS, deferred, and loaded in the footer.
-* **No layout shift (CLS).** The toggle button reserves its space, so switching between add/remove states never reflows the page.
-* **Keyboard and screen-reader friendly.** The toggle is a real `<button>` with `aria-pressed`, and every button for a product stays in sync after a toggle.
-* **AJAX toggle.** Adding or removing happens in place over admin-ajax, with no full page reload.
+* The front-end script is vanilla JavaScript with no jQuery dependency. It is deferred and loaded in the footer.
+* The toggle button reserves its space, so switching between the add and remove states does not reflow the page (no CLS).
+* The toggle is a real `<button>` with `aria-pressed`. When a product appears more than once on a page, every button for it updates together after a save, and the change is announced to screen readers through a polite live region.
+* Saving and removing happen over admin-ajax with no page reload.
 
-= Where it appears =
+On variable products the button follows the selected variation, so a customer saves the exact size or colour they chose rather than the parent product. Until they pick options the button stays disabled, with a hint you can word yourself.
 
-* The single product page (after the summary).
-* The shop and archive product loops (on each card).
-* A "Wishlist" tab in the WooCommerce My Account area (with an optional saved-item count).
-* Anywhere, via the `[shortlist]` shortcode.
-* In the block editor, via the **Shortlist Wishlist** block.
+The source lives on GitHub at https://github.com/wppoland/shortlist — that's the place for bug reports and patches.
 
-Each placement can be toggled from the settings screen.
+= Where the button and list can appear =
+
+* The single product page, below the add-to-cart area.
+* Product cards in the shop, category and tag loops.
+* A "Wishlist" tab in WooCommerce My Account, optionally showing a saved-item count like "Wishlist (3)".
+* A dedicated page you pick or create from the settings screen.
+* Any post or page, via the `[shortlist]` shortcode.
+* The block editor, via the **Shortlist Wishlist** block (server-rendered, so the editor preview matches the front end).
+
+Each placement is a separate switch on the settings screen.
 
 = Settings =
 
-A WooCommerce-capability settings page (Shortlist menu) lets you:
+The Shortlist menu in wp-admin opens to shop managers (it uses the `manage_woocommerce` capability), not only administrators. From there you can:
 
-* Enable or disable the wishlist.
-* Allow or block guest wishlists.
-* Choose where the button appears (single, loop, My Account).
+* Turn the wishlist on or off, and decide whether guests may use it.
+* Choose where the button shows up: single product, shop loop, My Account, and a dedicated page.
 * Show or hide the saved-item count on the My Account menu.
-* Set the add and remove button labels.
-* Control the wishlist list: heading, intro and empty-list text, column count, and which product details (image, name, price, add-to-cart, remove button) appear.
+* Set the add and remove button labels, and the variation hint.
+* Shape the list itself: heading, intro and empty-list text, how many columns the grid uses, and which details (image, name, price, add-to-cart, remove button) each saved product shows.
 
-= Built to be lightweight =
+Every setting has a "?" next to it that opens a short explanation of what it does.
 
-Shortlist handles everything itself: per-browser guest storage, an AJAX add/remove toggle, the My Account endpoint, guest-to-customer list transfer on login, and its own custom-table storage — with assets enqueued only where the wishlist appears.
+Shortlist only loads its stylesheet and script on the pages where the wishlist actually appears, so the rest of your store stays untouched.
 
 == Installation ==
 
