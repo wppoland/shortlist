@@ -71,10 +71,24 @@
 				BUTTON_SELECTOR + '[data-product-id="' + productId + '"]'
 			)
 			.forEach( function ( el ) {
+				var wasActive = el.classList.contains( 'is-active' );
 				el.classList.toggle( 'is-active', active );
 				el.setAttribute( 'aria-pressed', active ? 'true' : 'false' );
 				if ( label ) {
 					el.textContent = label;
+				}
+
+				// Presentation-only hook: flag a fresh save so CSS can play the
+				// one keepsake bloom. Self-clears; never fires on initial render
+				// or on remove. No behaviour depends on it.
+				if ( active && ! wasActive ) {
+					el.classList.remove( 'is-just-saved' );
+					// Reflow so re-adding the class restarts the animation.
+					void el.offsetWidth;
+					el.classList.add( 'is-just-saved' );
+					window.setTimeout( function () {
+						el.classList.remove( 'is-just-saved' );
+					}, 600 );
 				}
 			} );
 	}

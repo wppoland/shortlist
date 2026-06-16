@@ -10,12 +10,16 @@
 
 .shortlist-wishlist-button,
 .shortlist-wishlist-account {
-  /* Themeable design tokens - override these in your theme to restyle. */
-  --shortlist-accent: #d6336c;
+  /* Themeable design tokens - override these in your theme to restyle.
+     Palette comes from the "keepsake" world: a deliberate garnet rose for the
+     saved state, warmed by a single gold glint at the moment of keeping. */
+  --shortlist-accent: #c2255c;
   --shortlist-accent-contrast: #fff;
-  --shortlist-active-bg: #fdeef3;
-  --shortlist-active-border: #e093ac;
-  --shortlist-active-text: #a01a48;
+  --shortlist-active-bg: #fcebf1;
+  --shortlist-active-border: #e7a3bc;
+  --shortlist-active-text: #8d1742;
+  /* The gold "keepsake" glint - only ever surfaces on the save moment. */
+  --shortlist-keep-glint: #e0a449;
   --shortlist-surface: #fff;
   --shortlist-border: #d8dade;
   --shortlist-text: #1e1e1e;
@@ -41,11 +45,13 @@
 /* ---------------------------------------------------------------- Button -- */
 
 .shortlist-wishlist-button {
+  position: relative;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 0.5em;
   margin-block-start: 0.75rem;
+  padding-inline: 1em;
   /* Reserve height so the label/state swap never shifts surrounding layout. */
   min-block-size: 2.75rem;
   border: 1px solid var(--shortlist-border);
@@ -53,6 +59,31 @@
   background: var(--shortlist-surface);
   color: var(--shortlist-text);
   cursor: pointer;
+  transition: background var(--shortlist-transition),
+    border-color var(--shortlist-transition), color var(--shortlist-transition);
+}
+
+/* Single keepsake glow that blooms from the heart at the save moment. Lives in
+   its own layer so it never reserves space or shifts surrounding layout. */
+.shortlist-wishlist-button::after {
+  content: "";
+  position: absolute;
+  inset-block-start: 50%;
+  inset-inline-start: calc(1em + 0.525em);
+  inline-size: 1.05em;
+  block-size: 1.05em;
+  margin-block-start: -0.525em;
+  margin-inline-start: -0.525em;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    var(--shortlist-keep-glint) 0%,
+    var(--shortlist-accent) 45%,
+    transparent 70%
+  );
+  opacity: 0;
+  transform: scale(0.4);
+  pointer-events: none;
 }
 
 /* Heart affordance rendered before the label - mask keeps it crisp at any size
@@ -91,6 +122,29 @@
 
 .shortlist-wishlist-button:active::before {
   transform: scale(0.86);
+}
+
+/* --- The save moment: press the heart in and bloom the keepsake once. ----- */
+
+.shortlist-wishlist-button.is-just-saved::before {
+  animation: shortlist-keep-stamp 460ms cubic-bezier(0.34, 1.56, 0.64, 1) both;
+}
+
+.shortlist-wishlist-button.is-just-saved::after {
+  animation: shortlist-keep-bloom 520ms ease-out both;
+}
+
+@keyframes shortlist-keep-stamp {
+  0%   { transform: scale(1); }
+  35%  { transform: scale(0.72); }
+  70%  { transform: scale(1.18); }
+  100% { transform: scale(1); }
+}
+
+@keyframes shortlist-keep-bloom {
+  0%   { opacity: 0.85; transform: scale(0.4); }
+  60%  { opacity: 0.45; }
+  100% { opacity: 0; transform: scale(2.6); }
 }
 
 .shortlist-wishlist-button[aria-busy="true"] {
@@ -227,6 +281,7 @@
     --shortlist-active-bg: #3a2530;
     --shortlist-active-border: #b5577a;
     --shortlist-active-text: #f7c6d6;
+    --shortlist-keep-glint: #f0bd6a;
     --shortlist-surface: #1f2329;
     --shortlist-border: #3c434a;
     --shortlist-text: #e6e8eb;
@@ -238,9 +293,18 @@
 /* ----------------------------------------------------------- Reduced motion -- */
 
 @media (prefers-reduced-motion: reduce) {
+  .shortlist-wishlist-button,
   .shortlist-wishlist-button::before,
-  .shortlist-wishlist-button[aria-busy="true"]::before {
+  .shortlist-wishlist-button::after,
+  .shortlist-wishlist-button[aria-busy="true"]::before,
+  .shortlist-wishlist-button.is-just-saved::before,
+  .shortlist-wishlist-button.is-just-saved::after {
     transition: none;
     animation: none;
+  }
+
+  /* No motion, but still confirm the save with a single quiet glint. */
+  .shortlist-wishlist-button.is-just-saved::after {
+    opacity: 0;
   }
 }
