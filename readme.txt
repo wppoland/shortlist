@@ -94,6 +94,10 @@ Yes. The wishlist button is a real button with `aria-pressed`, screen-reader ann
 2. The wishlist in the My Account area.
 3. The Shortlist settings screen.
 
+== External Services ==
+
+Shortlist does not connect to any external service. Saving and removing items happens over your own site's admin-ajax endpoint, and all wishlist data stays in your WordPress database: logged-in customers' lists live in a custom `shortlist_items` table keyed to their user id, guest lists live in a cookie on the visitor's own browser until they log in, and settings are stored in the `shortlist_settings` option. The plugin sends no email and loads no third-party fonts, scripts or trackers.
+
 == Changelog ==
 
 = 0.3.0 =
