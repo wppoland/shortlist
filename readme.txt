@@ -1,5 +1,5 @@
 === Shortlist - Wishlist for WooCommerce ===
-Contributors: wppoland
+Contributors: motylanogha
 Tags: woocommerce, wishlist, product wishlist, save for later, favourites
 Requires at least: 6.5
 Tested up to: 7.0
