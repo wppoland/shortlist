@@ -27,6 +27,15 @@ On variable products the button follows the selected variation, so a customer sa
 
 The source lives on GitHub at https://github.com/wppoland/shortlist — that's the place for bug reports and patches.
 
+= Documentation and links =
+
+* **Documentation** - https://plogins.com/shortlist/docs/
+* **Plugin page** - https://plogins.com/shortlist/
+* **Source code** - https://github.com/wppoland/shortlist
+* **Bug reports and feature requests** - https://github.com/wppoland/shortlist/issues
+* **Discussions and questions** - https://github.com/wppoland/shortlist/discussions
+
+
 = Where the button and list can appear =
 
 * The single product page, below the add-to-cart area.
