@@ -18,7 +18,7 @@ declare(strict_types=1);
 defined('ABSPATH') || exit;
 
 $requiresVariation = ! empty($shortlist_button['requires_variation']);
-$variationHint = (string) ($shortlist_settings['variation_required_text'] ?? __('Choose product options before adding to your wishlist.', 'shortlist'));
+$variationHint = (string) ($shortlist_settings['variation_required_text'] ?? __('Choose product options before adding to your wishlist.', 'plogins-shortlist'));
 ?>
 <div class="shortlist-wishlist-single">
 <button

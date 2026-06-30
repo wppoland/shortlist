@@ -4,7 +4,7 @@ includes:
 parameters:
     level: 6
     paths:
-        - shortlist.php
+        - plogins-shortlist.php
         - uninstall.php
         - src
         - config

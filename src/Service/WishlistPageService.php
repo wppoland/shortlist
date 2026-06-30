@@ -31,14 +31,14 @@ final class WishlistPageService implements HasHooks
     public function handleCreatePage(): void
     {
         if (! current_user_can('manage_woocommerce')) {
-            wp_die(esc_html__('You do not have permission to create pages.', 'shortlist'));
+            wp_die(esc_html__('You do not have permission to create pages.', 'plogins-shortlist'));
         }
 
         check_admin_referer('shortlist_create_wishlist_page');
 
         $pageId = wp_insert_post(
             [
-                'post_title'   => __('My wishlist', 'shortlist'),
+                'post_title'   => __('My wishlist', 'plogins-shortlist'),
                 'post_name'    => 'my-wishlist',
                 'post_status'  => 'publish',
                 'post_type'    => 'page',

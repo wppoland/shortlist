@@ -1,10 +1,10 @@
-=== Shortlist - Wishlist for WooCommerce ===
+=== Plogins Shortlist for WooCommerce ===
 Contributors: motylanogha
 Tags: woocommerce, wishlist, product wishlist, save for later, favourites
 Requires at least: 6.5
 Tested up to: 7.0
 Requires PHP: 8.1
-Stable tag: 0.3.0
+Stable tag: 0.3.1
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -25,15 +25,14 @@ The plugin is written for stores that care about front-end weight and accessibil
 
 On variable products the button follows the selected variation, so a customer saves the exact size or colour they chose rather than the parent product. Until they pick options the button stays disabled, with a hint you can word yourself.
 
-The source lives on GitHub at https://github.com/wppoland/shortlist, that's the place for bug reports and patches.
+The source lives on GitHub at https://github.com/wppoland/plogins-shortlist, that's the place for bug reports and patches.
 
 = Documentation and links =
 
-* **Documentation** - https://plogins.com/shortlist/docs/
-* **Plugin page** - https://plogins.com/shortlist/
-* **Source code** - https://github.com/wppoland/shortlist
-* **Bug reports and feature requests** - https://github.com/wppoland/shortlist/issues
-* **Discussions and questions** - https://github.com/wppoland/shortlist/discussions
+* **Documentation** - https://plogins.com/plogins-shortlist/docs/
+* **Plugin page** - https://plogins.com/plogins-shortlist/
+* **Source code** - https://github.com/wppoland/plogins-shortlist
+* **Bug reports and feature requests** - https://github.com/wppoland/plogins-shortlist/issues
 
 
 = Where the button and list can appear =
@@ -108,6 +107,9 @@ Yes. The wishlist button is a real button with `aria-pressed`, screen-reader ann
 Shortlist does not connect to any external service. Saving and removing items happens over your own site's admin-ajax endpoint, and all wishlist data stays in your WordPress database: logged-in customers' lists live in a custom `shortlist_items` table keyed to their user id, guest lists live in a cookie on the visitor's own browser until they log in, and settings are stored in the `shortlist_settings` option. The plugin sends no email and loads no third-party fonts, scripts or trackers.
 
 == Changelog ==
+
+= 0.3.1 =
+* Renamed to Plogins Shortlist for WooCommerce for a more distinctive plugin name.
 
 = 0.3.0 =
 * New: **Wishlist page**, pick an existing page or create one from settings; auto-inject the `[shortlist]` list when the page has no shortcode yet.

@@ -17,9 +17,9 @@ declare(strict_types=1);
 
 defined('ABSPATH') || exit;
 
-$shortlist_title        = (string) ($shortlist_settings['account_title'] ?? __('My wishlist', 'shortlist'));
+$shortlist_title        = (string) ($shortlist_settings['account_title'] ?? __('My wishlist', 'plogins-shortlist'));
 $shortlist_intro        = (string) ($shortlist_settings['account_intro_text'] ?? '');
-$shortlist_empty        = (string) ($shortlist_settings['empty_text'] ?? __('Your wishlist is empty.', 'shortlist'));
+$shortlist_empty        = (string) ($shortlist_settings['empty_text'] ?? __('Your wishlist is empty.', 'plogins-shortlist'));
 $shortlist_columns      = max(1, (int) ($shortlist_settings['grid_columns'] ?? 3));
 $shortlist_show_title   = (bool) ($shortlist_settings['show_list_title'] ?? true);
 $shortlist_show_image   = (bool) ($shortlist_settings['show_product_image'] ?? true);
@@ -27,7 +27,7 @@ $shortlist_show_name    = (bool) ($shortlist_settings['show_product_name'] ?? tr
 $shortlist_show_price   = (bool) ($shortlist_settings['show_price'] ?? true);
 $shortlist_show_cart    = (bool) ($shortlist_settings['show_add_to_cart'] ?? true);
 $shortlist_show_remove  = (bool) ($shortlist_settings['show_remove_button'] ?? true);
-$shortlist_remove_label = (string) ($shortlist_settings['button_remove_text'] ?? __('Remove from wishlist', 'shortlist'));
+$shortlist_remove_label = (string) ($shortlist_settings['button_remove_text'] ?? __('Remove from wishlist', 'plogins-shortlist'));
 ?>
 <div class="shortlist-wishlist-account">
     <?php if ($shortlist_show_title) : ?>
@@ -48,7 +48,7 @@ $shortlist_remove_label = (string) ($shortlist_settings['button_remove_text'] ??
             if (is_string($shortlist_shop_url) && $shortlist_shop_url !== '') :
                 ?>
                 <a class="button shortlist-wishlist-account__continue" href="<?php echo esc_url($shortlist_shop_url); ?>">
-                    <?php esc_html_e('Browse products', 'shortlist'); ?>
+                    <?php esc_html_e('Browse products', 'plogins-shortlist'); ?>
                 </a>
             <?php endif; ?>
         </div>

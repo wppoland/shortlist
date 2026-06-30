@@ -9,7 +9,7 @@ jobs:
   ci:
     uses: wppoland/workflows/.github/workflows/_php-ci.yml@v1
     with:
-      slug: shortlist
+      slug: plogins-shortlist
       # Front-end JS/CSS is hand-written static (no npm build step).
       has-js: false
       run-i18n: false

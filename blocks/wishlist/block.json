@@ -7,7 +7,7 @@
     "icon": "heart",
     "description": "Show the current shopper's wishlist (the same list as the [shortlist] shortcode).",
     "keywords": ["wishlist", "woocommerce", "shortlist", "save for later"],
-    "textdomain": "shortlist",
+    "textdomain": "plogins-shortlist",
     "supports": {
         "html": false,
         "align": ["wide", "full"]

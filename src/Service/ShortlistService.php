@@ -51,12 +51,12 @@ final class ShortlistService implements HasHooks
             singleButtonTemplate: 'single-wishlist-button',
             accountTemplate: 'account-wishlist',
             labels: [
-                'add'            => __('Add to wishlist', 'shortlist'),
-                'remove'         => __('Remove from wishlist', 'shortlist'),
-                'account'        => __('Wishlist', 'shortlist'),
-                'login_required' => __('Please log in to use your wishlist.', 'shortlist'),
-                'not_found'      => __('Product not found.', 'shortlist'),
-                'variation_required' => __('Choose product options before adding to your wishlist.', 'shortlist'),
+                'add'            => __('Add to wishlist', 'plogins-shortlist'),
+                'remove'         => __('Remove from wishlist', 'plogins-shortlist'),
+                'account'        => __('Wishlist', 'plogins-shortlist'),
+                'login_required' => __('Please log in to use your wishlist.', 'plogins-shortlist'),
+                'not_found'      => __('Product not found.', 'plogins-shortlist'),
+                'variation_required' => __('Choose product options before adding to your wishlist.', 'plogins-shortlist'),
             ],
             isEnabled: fn (): bool => $this->isFeatureEnabled(),
             settings: fn (): array => $this->settings(),
@@ -122,7 +122,7 @@ final class ShortlistService implements HasHooks
 
         $items['shortlist'] = sprintf(
             /* translators: 1: wishlist menu label, 2: saved item count */
-            _x('%1$s (%2$d)', 'My Account menu label with item count', 'shortlist'),
+            _x('%1$s (%2$d)', 'My Account menu label with item count', 'plogins-shortlist'),
             $items['shortlist'],
             $count,
         );
@@ -143,9 +143,9 @@ final class ShortlistService implements HasHooks
         }
 
         $strings = [
-            'addedText'   => __('Added to your wishlist.', 'shortlist'),
-            'removedText' => __('Removed from your wishlist.', 'shortlist'),
-            'errorText'          => __('Sorry, something went wrong. Please try again.', 'shortlist'),
+            'addedText'   => __('Added to your wishlist.', 'plogins-shortlist'),
+            'removedText' => __('Removed from your wishlist.', 'plogins-shortlist'),
+            'errorText'          => __('Sorry, something went wrong. Please try again.', 'plogins-shortlist'),
             'variationRequired' => $this->message('variation_required_text', 'variation_required'),
         ];
 
@@ -214,7 +214,7 @@ final class ShortlistService implements HasHooks
         }
 
         $labels = [
-            'variation_required' => __('Choose product options before adding to your wishlist.', 'shortlist'),
+            'variation_required' => __('Choose product options before adding to your wishlist.', 'plogins-shortlist'),
         ];
 
         return $labels[$labelKey] ?? '';

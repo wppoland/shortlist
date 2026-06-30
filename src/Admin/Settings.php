@@ -38,8 +38,8 @@ final class Settings implements HasHooks
     public function addMenuPage(): void
     {
         add_menu_page(
-            __('Shortlist Settings', 'shortlist'),
-            __('Shortlist', 'shortlist'),
+            __('Shortlist Settings', 'plogins-shortlist'),
+            __('Shortlist', 'plogins-shortlist'),
             'manage_woocommerce',
             self::PAGE,
             [$this, 'renderPage'],
@@ -109,40 +109,40 @@ final class Settings implements HasHooks
         if (get_transient($noticeKey)) {
             delete_transient($noticeKey);
             echo '<div class="notice notice-success is-dismissible"><p>';
-            esc_html_e('Your wishlist page was created and selected below. You can edit the title or slug anytime under Pages.', 'shortlist');
+            esc_html_e('Your wishlist page was created and selected below. You can edit the title or slug anytime under Pages.', 'plogins-shortlist');
             echo '</p></div>';
         }
         ?>
         <div class="wrap shortlist-admin">
             <h1><?php echo esc_html(get_admin_page_title()); ?></h1>
             <p class="shortlist-admin__intro">
-                <?php esc_html_e('Give shoppers an accessible "save for later" wishlist. Choose where the button appears, tune the labels, and design the list shown on the My Account tab, the [shortlist] shortcode, and the Shortlist block.', 'shortlist'); ?>
+                <?php esc_html_e('Give shoppers an accessible "save for later" wishlist. Choose where the button appears, tune the labels, and design the list shown on the My Account tab, the [shortlist] shortcode, and the Shortlist block.', 'plogins-shortlist'); ?>
             </p>
 
             <form method="post" action="options.php">
                 <?php settings_fields(self::PAGE); ?>
 
                 <div class="shortlist-admin__card">
-                    <h2><?php esc_html_e('General', 'shortlist'); ?></h2>
+                    <h2><?php esc_html_e('General', 'plogins-shortlist'); ?></h2>
                     <p class="shortlist-admin__card-desc">
-                        <?php esc_html_e('Turn the wishlist on and decide who can use it.', 'shortlist'); ?>
+                        <?php esc_html_e('Turn the wishlist on and decide who can use it.', 'plogins-shortlist'); ?>
                     </p>
                     <table class="form-table" role="presentation">
                         <tbody>
                             <?php
                             $this->checkboxRow(
                                 'enabled',
-                                __('Enable wishlist', 'shortlist'),
-                                __('Let visitors add products to a wishlist.', 'shortlist'),
-                                __('Master switch. When off, no buttons, menu item, shortcode or block output is rendered anywhere on your store - nothing is deleted, so you can switch it back on at any time.', 'shortlist'),
+                                __('Enable wishlist', 'plogins-shortlist'),
+                                __('Let visitors add products to a wishlist.', 'plogins-shortlist'),
+                                __('Master switch. When off, no buttons, menu item, shortcode or block output is rendered anywhere on your store - nothing is deleted, so you can switch it back on at any time.', 'plogins-shortlist'),
                                 $settings,
                                 true,
                             );
                             $this->checkboxRow(
                                 'allow_guests',
-                                __('Allow guests', 'shortlist'),
-                                __('Allow logged-out visitors to build a wishlist.', 'shortlist'),
-                                __('Guest lists are stored in a cookie and automatically merged into the customer account on login, so nothing is lost. Turn this off to require an account first - logged-out shoppers are then sent to the login page when they click the button.', 'shortlist'),
+                                __('Allow guests', 'plogins-shortlist'),
+                                __('Allow logged-out visitors to build a wishlist.', 'plogins-shortlist'),
+                                __('Guest lists are stored in a cookie and automatically merged into the customer account on login, so nothing is lost. Turn this off to require an account first - logged-out shoppers are then sent to the login page when they click the button.', 'plogins-shortlist'),
                                 $settings,
                                 true,
                             );
@@ -152,39 +152,39 @@ final class Settings implements HasHooks
                 </div>
 
                 <div class="shortlist-admin__card">
-                    <h2><?php esc_html_e('Button placement', 'shortlist'); ?></h2>
+                    <h2><?php esc_html_e('Button placement', 'plogins-shortlist'); ?></h2>
                     <p class="shortlist-admin__card-desc">
-                        <?php esc_html_e('Pick where the add-to-wishlist button and the My Account tab appear.', 'shortlist'); ?>
+                        <?php esc_html_e('Pick where the add-to-wishlist button and the My Account tab appear.', 'plogins-shortlist'); ?>
                     </p>
                     <table class="form-table" role="presentation">
                         <tbody>
                             <?php
                             $this->checkboxRow(
                                 'show_on_single',
-                                __('Single product page', 'shortlist'),
-                                __('Show the add-to-wishlist button on the product page.', 'shortlist'),
-                                __('Adds the toggle button to the product summary, just under the add-to-cart area.', 'shortlist'),
+                                __('Single product page', 'plogins-shortlist'),
+                                __('Show the add-to-wishlist button on the product page.', 'plogins-shortlist'),
+                                __('Adds the toggle button to the product summary, just under the add-to-cart area.', 'plogins-shortlist'),
                                 $settings,
                             );
                             $this->checkboxRow(
                                 'show_on_loop',
-                                __('Shop and archive loops', 'shortlist'),
-                                __('Show the add-to-wishlist button on product cards in the shop loop.', 'shortlist'),
-                                __('Adds a full-width toggle to each product card on the shop, category and tag pages so shoppers can save without opening the product.', 'shortlist'),
+                                __('Shop and archive loops', 'plogins-shortlist'),
+                                __('Show the add-to-wishlist button on product cards in the shop loop.', 'plogins-shortlist'),
+                                __('Adds a full-width toggle to each product card on the shop, category and tag pages so shoppers can save without opening the product.', 'plogins-shortlist'),
                                 $settings,
                             );
                             $this->checkboxRow(
                                 'show_in_account',
-                                __('My Account menu', 'shortlist'),
-                                __('Add a "Wishlist" tab to the WooCommerce My Account area.', 'shortlist'),
-                                __('Gives logged-in customers a dedicated Wishlist tab in My Account that lists everything they have saved.', 'shortlist'),
+                                __('My Account menu', 'plogins-shortlist'),
+                                __('Add a "Wishlist" tab to the WooCommerce My Account area.', 'plogins-shortlist'),
+                                __('Gives logged-in customers a dedicated Wishlist tab in My Account that lists everything they have saved.', 'plogins-shortlist'),
                                 $settings,
                             );
                             $this->checkboxRow(
                                 'show_account_count',
-                                __('Show item count', 'shortlist'),
-                                __('Show the number of saved items next to the My Account "Wishlist" menu label.', 'shortlist'),
-                                __('Appends a live count, e.g. "Wishlist (3)", to the menu label so customers see at a glance how many items they have saved. Requires the My Account menu option above.', 'shortlist'),
+                                __('Show item count', 'plogins-shortlist'),
+                                __('Show the number of saved items next to the My Account "Wishlist" menu label.', 'plogins-shortlist'),
+                                __('Appends a live count, e.g. "Wishlist (3)", to the menu label so customers see at a glance how many items they have saved. Requires the My Account menu option above.', 'plogins-shortlist'),
                                 $settings,
                             );
                             ?>
@@ -193,32 +193,32 @@ final class Settings implements HasHooks
                 </div>
 
                 <div class="shortlist-admin__card">
-                    <h2><?php esc_html_e('Button labels', 'shortlist'); ?></h2>
+                    <h2><?php esc_html_e('Button labels', 'plogins-shortlist'); ?></h2>
                     <p class="shortlist-admin__card-desc">
-                        <?php esc_html_e('The text shown on the toggle button. It switches between the two as items are saved and removed.', 'shortlist'); ?>
+                        <?php esc_html_e('The text shown on the toggle button. It switches between the two as items are saved and removed.', 'plogins-shortlist'); ?>
                     </p>
                     <table class="form-table" role="presentation">
                         <tbody>
                             <?php
                             $this->textRow(
                                 'button_add_text',
-                                __('Add label', 'shortlist'),
-                                __('Add to wishlist', 'shortlist'),
-                                __('Shown when the product is not yet saved. Leave blank to use the default "Add to wishlist".', 'shortlist'),
+                                __('Add label', 'plogins-shortlist'),
+                                __('Add to wishlist', 'plogins-shortlist'),
+                                __('Shown when the product is not yet saved. Leave blank to use the default "Add to wishlist".', 'plogins-shortlist'),
                                 $settings,
                             );
                             $this->textRow(
                                 'button_remove_text',
-                                __('Remove label', 'shortlist'),
-                                __('Remove from wishlist', 'shortlist'),
-                                __('Shown once the product is saved, so clicking again removes it. Leave blank to use the default "Remove from wishlist".', 'shortlist'),
+                                __('Remove label', 'plogins-shortlist'),
+                                __('Remove from wishlist', 'plogins-shortlist'),
+                                __('Shown once the product is saved, so clicking again removes it. Leave blank to use the default "Remove from wishlist".', 'plogins-shortlist'),
                                 $settings,
                             );
                             $this->textRow(
                                 'variation_required_text',
-                                __('Variation hint', 'shortlist'),
-                                __('Choose product options before adding to your wishlist.', 'shortlist'),
-                                __('Shown under the button on variable products until the shopper picks size, colour, or other options.', 'shortlist'),
+                                __('Variation hint', 'plogins-shortlist'),
+                                __('Choose product options before adding to your wishlist.', 'plogins-shortlist'),
+                                __('Shown under the button on variable products until the shopper picks size, colour, or other options.', 'plogins-shortlist'),
                                 $settings,
                             );
                             ?>
@@ -227,16 +227,16 @@ final class Settings implements HasHooks
                 </div>
 
                 <div class="shortlist-admin__card">
-                    <h2><?php esc_html_e('Dedicated wishlist page', 'shortlist'); ?></h2>
+                    <h2><?php esc_html_e('Dedicated wishlist page', 'plogins-shortlist'); ?></h2>
                     <p class="shortlist-admin__card-desc">
-                        <?php esc_html_e('Give shoppers a bookmarkable page with their saved products, great for navigation menus and email campaigns.', 'shortlist'); ?>
+                        <?php esc_html_e('Give shoppers a bookmarkable page with their saved products, great for navigation menus and email campaigns.', 'plogins-shortlist'); ?>
                     </p>
                     <table class="form-table" role="presentation">
                         <tbody>
                             <tr>
                                 <th scope="row">
-                                    <label for="shortlist_wishlist_page_id"><?php esc_html_e('Wishlist page', 'shortlist'); ?></label>
-                                    <?php echo $this->helpAffordance(__('Pick an existing page or create one with the button below. Shortlist loads its assets on that page automatically.', 'shortlist')); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Built from escaped parts in helpAffordance(). ?>
+                                    <label for="shortlist_wishlist_page_id"><?php esc_html_e('Wishlist page', 'plogins-shortlist'); ?></label>
+                                    <?php echo $this->helpAffordance(__('Pick an existing page or create one with the button below. Shortlist loads its assets on that page automatically.', 'plogins-shortlist')); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- Built from escaped parts in helpAffordance(). ?>
                                 </th>
                                 <td>
                                     <?php
@@ -246,23 +246,23 @@ final class Settings implements HasHooks
                                             'name'              => self::OPTION . '[wishlist_page_id]',
                                             'id'                => 'shortlist_wishlist_page_id',
                                             'selected'          => (int) ($settings['wishlist_page_id'] ?? 0),
-                                            'show_option_none'  => __(', None, use My Account or shortcode only, ', 'shortlist'),
+                                            'show_option_none'  => __(', None, use My Account or shortcode only, ', 'plogins-shortlist'),
                                             'option_none_value' => '0',
                                         ],
                                     );
                                     // phpcs:enable WordPress.Security.EscapeOutput.OutputNotEscaped
                                     ?>
                                     <p class="description">
-                                        <?php esc_html_e('Optional. When set, the wishlist stylesheet and script load on that page so buttons and remove actions work there too.', 'shortlist'); ?>
+                                        <?php esc_html_e('Optional. When set, the wishlist stylesheet and script load on that page so buttons and remove actions work there too.', 'plogins-shortlist'); ?>
                                     </p>
                                 </td>
                             </tr>
                             <?php
                             $this->checkboxRow(
                                 'inject_wishlist_on_page',
-                                __('Show list on page', 'shortlist'),
-                                __('Automatically output the wishlist at the top of the chosen page.', 'shortlist'),
-                                __('Helpful when the page is still empty: shoppers see their saved products immediately. If the page already contains [shortlist], this stays off to avoid duplicates.', 'shortlist'),
+                                __('Show list on page', 'plogins-shortlist'),
+                                __('Automatically output the wishlist at the top of the chosen page.', 'plogins-shortlist'),
+                                __('Helpful when the page is still empty: shoppers see their saved products immediately. If the page already contains [shortlist], this stays off to avoid duplicates.', 'plogins-shortlist'),
                                 $settings,
                                 true,
                             );
@@ -274,90 +274,90 @@ final class Settings implements HasHooks
                         <input type="hidden" name="action" value="shortlist_create_wishlist_page" />
                         <?php
                         // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped -- submit_button() escapes its own markup.
-                        submit_button(__('Create wishlist page', 'shortlist'), 'secondary', 'submit', false);
+                        submit_button(__('Create wishlist page', 'plogins-shortlist'), 'secondary', 'submit', false);
                         // phpcs:enable
                         ?>
                         <p class="description">
-                            <?php esc_html_e('Creates a published page titled “My wishlist” with the [shortlist] shortcode and selects it above.', 'shortlist'); ?>
+                            <?php esc_html_e('Creates a published page titled “My wishlist” with the [shortlist] shortcode and selects it above.', 'plogins-shortlist'); ?>
                         </p>
                     </form>
                 </div>
 
                 <div class="shortlist-admin__card">
-                    <h2><?php esc_html_e('Wishlist list', 'shortlist'); ?></h2>
+                    <h2><?php esc_html_e('Wishlist list', 'plogins-shortlist'); ?></h2>
                     <p class="shortlist-admin__card-desc">
-                        <?php esc_html_e('Design the list shown on the My Account tab and via the [shortlist] shortcode and the Shortlist block.', 'shortlist'); ?>
+                        <?php esc_html_e('Design the list shown on the My Account tab and via the [shortlist] shortcode and the Shortlist block.', 'plogins-shortlist'); ?>
                     </p>
                     <table class="form-table" role="presentation">
                         <tbody>
                             <?php
                             $this->textRow(
                                 'account_title',
-                                __('List heading', 'shortlist'),
-                                __('My wishlist', 'shortlist'),
-                                __('The heading shown above the saved products. Only displayed when "Show heading" below is enabled.', 'shortlist'),
+                                __('List heading', 'plogins-shortlist'),
+                                __('My wishlist', 'plogins-shortlist'),
+                                __('The heading shown above the saved products. Only displayed when "Show heading" below is enabled.', 'plogins-shortlist'),
                                 $settings,
                             );
                             $this->textRow(
                                 'account_intro_text',
-                                __('Intro text', 'shortlist'),
-                                __('e.g. Items you saved for later', 'shortlist'),
-                                __('Optional short paragraph shown under the heading - a good place to reassure shoppers their list is private to them. Leave blank to hide it.', 'shortlist'),
+                                __('Intro text', 'plogins-shortlist'),
+                                __('e.g. Items you saved for later', 'plogins-shortlist'),
+                                __('Optional short paragraph shown under the heading - a good place to reassure shoppers their list is private to them. Leave blank to hide it.', 'plogins-shortlist'),
                                 $settings,
                             );
                             $this->textRow(
                                 'empty_text',
-                                __('Empty-list message', 'shortlist'),
-                                __('Your wishlist is empty.', 'shortlist'),
-                                __('Friendly message shown when the shopper has not saved anything yet. A "Browse products" link is added automatically below it.', 'shortlist'),
+                                __('Empty-list message', 'plogins-shortlist'),
+                                __('Your wishlist is empty.', 'plogins-shortlist'),
+                                __('Friendly message shown when the shopper has not saved anything yet. A "Browse products" link is added automatically below it.', 'plogins-shortlist'),
                                 $settings,
                             );
                             $this->numberRow(
                                 'grid_columns',
-                                __('Columns', 'shortlist'),
-                                __('How many products sit side by side in the grid (1-6). The layout automatically drops to a comfortable number of columns on small screens.', 'shortlist'),
+                                __('Columns', 'plogins-shortlist'),
+                                __('How many products sit side by side in the grid (1-6). The layout automatically drops to a comfortable number of columns on small screens.', 'plogins-shortlist'),
                                 $settings,
                             );
                             $this->checkboxRow(
                                 'show_list_title',
-                                __('Show heading', 'shortlist'),
-                                __('Show the list heading above the products.', 'shortlist'),
-                                __('Toggles the "List heading" above. Turn off if your page already has its own title.', 'shortlist'),
+                                __('Show heading', 'plogins-shortlist'),
+                                __('Show the list heading above the products.', 'plogins-shortlist'),
+                                __('Toggles the "List heading" above. Turn off if your page already has its own title.', 'plogins-shortlist'),
                                 $settings,
                             );
                             $this->checkboxRow(
                                 'show_product_image',
-                                __('Show image', 'shortlist'),
-                                __('Show the product thumbnail.', 'shortlist'),
-                                __('Displays each saved product\'s featured image. Space is reserved for it so the page never jumps as images load.', 'shortlist'),
+                                __('Show image', 'plogins-shortlist'),
+                                __('Show the product thumbnail.', 'plogins-shortlist'),
+                                __('Displays each saved product\'s featured image. Space is reserved for it so the page never jumps as images load.', 'plogins-shortlist'),
                                 $settings,
                             );
                             $this->checkboxRow(
                                 'show_product_name',
-                                __('Show name', 'shortlist'),
-                                __('Show the product name.', 'shortlist'),
-                                __('Displays the product title as a link to the product page.', 'shortlist'),
+                                __('Show name', 'plogins-shortlist'),
+                                __('Show the product name.', 'plogins-shortlist'),
+                                __('Displays the product title as a link to the product page.', 'plogins-shortlist'),
                                 $settings,
                             );
                             $this->checkboxRow(
                                 'show_price',
-                                __('Show price', 'shortlist'),
-                                __('Show the product price.', 'shortlist'),
-                                __('Displays the current price, including any sale price, exactly as WooCommerce formats it.', 'shortlist'),
+                                __('Show price', 'plogins-shortlist'),
+                                __('Show the product price.', 'plogins-shortlist'),
+                                __('Displays the current price, including any sale price, exactly as WooCommerce formats it.', 'plogins-shortlist'),
                                 $settings,
                             );
                             $this->checkboxRow(
                                 'show_add_to_cart',
-                                __('Show add-to-cart', 'shortlist'),
-                                __('Show an add-to-cart button for in-stock products.', 'shortlist'),
-                                __('Lets shoppers move an item straight from their wishlist to the cart. The button is only shown for purchasable, in-stock products.', 'shortlist'),
+                                __('Show add-to-cart', 'plogins-shortlist'),
+                                __('Show an add-to-cart button for in-stock products.', 'plogins-shortlist'),
+                                __('Lets shoppers move an item straight from their wishlist to the cart. The button is only shown for purchasable, in-stock products.', 'plogins-shortlist'),
                                 $settings,
                             );
                             $this->checkboxRow(
                                 'show_remove_button',
-                                __('Show remove button', 'shortlist'),
-                                __('Show a remove-from-wishlist button on each item.', 'shortlist'),
-                                __('Adds a one-click remove button to each saved product so shoppers can tidy their list.', 'shortlist'),
+                                __('Show remove button', 'plogins-shortlist'),
+                                __('Show a remove-from-wishlist button on each item.', 'plogins-shortlist'),
+                                __('Adds a one-click remove button to each saved product so shoppers can tidy their list.', 'plogins-shortlist'),
                                 $settings,
                             );
                             ?>
@@ -395,7 +395,7 @@ final class Settings implements HasHooks
             . '</span>',
             esc_attr($panelId),
             /* translators: accessible name for the help button. */
-            esc_attr__('More information', 'shortlist'),
+            esc_attr__('More information', 'plogins-shortlist'),
             esc_html($text),
             esc_attr('--shortlist-anchor:' . $anchor . ';anchor-name:' . $anchor . ';'),
         );
@@ -545,8 +545,8 @@ final class Settings implements HasHooks
             'show_on_loop'       => ! empty($raw['show_on_loop']),
             'show_in_account'    => ! empty($raw['show_in_account']),
             'show_account_count' => ! empty($raw['show_account_count']),
-            'button_add_text'    => $addText !== '' ? $addText : (string) ($defaults['button_add_text'] ?? __('Add to wishlist', 'shortlist')),
-            'button_remove_text' => $removeText !== '' ? $removeText : (string) ($defaults['button_remove_text'] ?? __('Remove from wishlist', 'shortlist')),
+            'button_add_text'    => $addText !== '' ? $addText : (string) ($defaults['button_add_text'] ?? __('Add to wishlist', 'plogins-shortlist')),
+            'button_remove_text' => $removeText !== '' ? $removeText : (string) ($defaults['button_remove_text'] ?? __('Remove from wishlist', 'plogins-shortlist')),
             'account_title'      => isset($raw['account_title']) ? sanitize_text_field((string) $raw['account_title']) : (string) ($defaults['account_title'] ?? ''),
             'account_intro_text' => isset($raw['account_intro_text']) ? sanitize_text_field((string) $raw['account_intro_text']) : (string) ($defaults['account_intro_text'] ?? ''),
             'empty_text'         => isset($raw['empty_text']) ? sanitize_text_field((string) $raw['empty_text']) : (string) ($defaults['empty_text'] ?? ''),
