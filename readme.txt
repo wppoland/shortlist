@@ -1,4 +1,4 @@
-=== Plogins Shortlist for WooCommerce ===
+=== Plogins Shortlist - Wishlist for WooCommerce ===
 Contributors: motylanogha
 Tags: woocommerce, wishlist, product wishlist, save for later, favourites
 Requires at least: 6.5
