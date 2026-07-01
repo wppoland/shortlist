@@ -96,6 +96,11 @@ Yes. Choose an existing page or create one from the Shortlist settings screen. T
 
 Yes. The wishlist button is a real button with `aria-pressed`, screen-reader announcements and no layout shift when the saved state changes.
 
+
+= Does this plugin work on WordPress Multisite? =
+
+Yes. This plugin is compatible with WordPress Multisite. Network activate it or activate it on individual sites; each site keeps its own settings and data.
+
 == Screenshots ==
 
 1. The wishlist page showing saved products, each with add-to-cart and remove buttons.
